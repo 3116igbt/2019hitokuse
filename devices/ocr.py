@@ -28,6 +28,7 @@ def view_results(path, save_dir, texts):
     now = datetime.datetime.now()
     save_path = save_dir + "result_" + now.strftime("%y%m%d%H%M%S") + ".jpg"
     im.save(save_path)
+    return im_w
 
 def recognize_text(path):
     client = vision.ImageAnnotatorClient()

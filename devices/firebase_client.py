@@ -17,6 +17,7 @@ class Firebase_client:
             self.count = self.count + 1
         now = datetime.now().strftime("%Y/%m/%d %H:%M:%S")
         doc_ref = self.db.collection(u_col_name).document(u_doc_name)
+        data[u'timestamp'] = now
         doc_ref.set(data)
 
     def get_firebase_collection(self, u_col_name):
