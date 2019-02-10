@@ -68,7 +68,6 @@ def detect_progress(texts_info, img_width):
                 status = ST_THK
             prev_r = text_info['br']['y']
             if st_change:
-                tlen[status] = 0
                 print("status change : {0}, question_count : {1}".format(status, q_count))
         tlen[status] = tlen[status] + text_info['text_len']
         print("current status : {0} , len : {1}".format(status, tlen[status]))
