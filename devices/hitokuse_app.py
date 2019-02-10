@@ -32,10 +32,14 @@ import firebase_client
 
 def execute(imgpath, save_dir, collection_name):
     # GCP Object Loclizerを呼び出して結果を取得
-    detected_texts = ocr.recognize_text(path)
+    detected_texts = ocr.recognize_text(imgpath)
     # 結果表示
     img_width = ocr.view_results(imgpath, save_dir, detected_texts)
-    post_data = firebase_client.set_firebase(collection_name, data)
+    post_data = record_detector.get_detected_record(detected_texts, img_width)
+    
+    # firebase clientを起動して書き込み
+    fcli = firebase_client.Firebase_client()
+    fcli.set_firebase(collection_name, post_data)
 
 if __name__ == '__main__':
     if len(sys.argv) < 3:

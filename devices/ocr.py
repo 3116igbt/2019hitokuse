@@ -14,7 +14,6 @@ def view_results(path, save_dir, texts):
     
     print('Texts:')
     for text in texts:
-
         poly_xy =[] 
         print('\n"{}"'.format(text.description))
         vertices = (['({},{})'.format(vertex.x, vertex.y)
@@ -23,6 +22,7 @@ def view_results(path, save_dir, texts):
         for vertex in text.bounding_poly.vertices:
             print(' - ({}, {})'.format(vertex.x, vertex.y))
             poly_xy.append((vertex.x, vertex.y))
+        draw.polygon(poly_xy, outline=(255, 0, 0))
 
     # 画像保存
     now = datetime.datetime.now()

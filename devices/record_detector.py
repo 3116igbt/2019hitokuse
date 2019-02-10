@@ -19,7 +19,12 @@ def convert_to_objects_json(detected_texts):
 
 def get_text_info(texts_json):
     ret = []
+    first_time = True
     for text_json in texts_json:
+        # 最初は全体なので省く
+        if first_time:
+            first_time = False
+            continue
         # 左上と右下を検出
         ul_1, br_1 = get_diagonal_vertex(text_json["vertices"])
         print("ul_1 {}".format(ul_1))
