@@ -53,9 +53,11 @@ def detect_progress(texts_info, img_width):
     }
     # ステータスを作成
     for text_info in texts_info:
-        if prev_r < text_info['br']['y']:
+        # 改行判定
+        if prev_r < text_info['ul']['y']:
             st_change = False
-            if status_thd >= text_info['ul']['x']:
+            # 左(記述中)か右（最終回答）か判断
+            if status_thd <= text_info['ul']['x']:
                 if status != ST_ANS:
                     st_change = True
                 status = ST_ANS
@@ -64,6 +66,7 @@ def detect_progress(texts_info, img_width):
                     st_change = True
                     q_count = q_count + 1
                 status = ST_THK
+            prev_r = text_info['br']['y']
             if st_change:
                 tlen[status] = 0
                 print("status change : {0}, question_count : {1}".format(status, q_count))
